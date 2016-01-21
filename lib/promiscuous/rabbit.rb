@@ -31,7 +31,7 @@ module Promiscuous::Rabbit
     private
 
     def self.uri_for(queue)
-      URI.parse("#{Promiscuous::Config.rabbit_mgmt_url}/api/policies/%2f/#{queue}-retry")
+      URI.parse("#{Promiscuous::Config.rabbit_mgmt_url}/api/policies/#{Promiscuous::Config.amqp_vhost}/#{queue}-retry")
     end
 
     def self.http_headers

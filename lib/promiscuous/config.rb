@@ -1,5 +1,5 @@
 module Promiscuous::Config
-  mattr_accessor :app, :backend, :amqp_url,
+  mattr_accessor :app, :backend, :amqp_url, :amqp_vhost,
                  :publisher_amqp_url, :subscriber_amqp_url, :publisher_exchange,
                  :subscriber_exchanges, :sync_exchange, :queue_name, :queue_options,
                  :redis_url, :redis_stats_url, :stats_interval, :error_queue_name,
@@ -49,6 +49,7 @@ module Promiscuous::Config
     self.rabbit_mgmt_url      ||= 'http://guest:guest@localhost:15672'
     self.publisher_amqp_url   ||= self.amqp_url
     self.subscriber_amqp_url  ||= self.amqp_url
+    self.amqp_vhost           ||= '%2f'
     self.publisher_exchange   ||= 'promiscuous'
     self.sync_exchange        ||= 'promiscuous.sync'
     self.subscriber_exchanges ||= [self.publisher_exchange]
