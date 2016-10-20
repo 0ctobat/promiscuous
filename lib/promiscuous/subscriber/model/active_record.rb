@@ -3,6 +3,8 @@ module Promiscuous::Subscriber::Model::ActiveRecord
   include Promiscuous::Subscriber::Model::Base
 
   included do
+    next unless self.table_exists?
+    
     if !self.columns.collect(&:name).include?("_v")
       raise <<-help
       #{self} must include a _v column.  Create the following migration:
