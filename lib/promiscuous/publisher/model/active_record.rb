@@ -8,7 +8,7 @@ module Promiscuous::Publisher::Model::ActiveRecord
     next unless self.table_exists?
     
     if !self.columns.collect(&:name).include?("_v")
-      raise <<-help
+      Promiscuous.logger.warn <<-help
       #{self} must include a _v column.  Create the following migration:
         change_table :#{self.table_name} do |t|
           t.integer :_v, :limit => 8, :default => 1
